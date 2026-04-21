@@ -16,11 +16,22 @@ public class EnemyBehaviour : MonoBehaviour
     private void Update()
     {
         HandleChasePlayer();
+        HandleOutOfBounder();
     }
 
     private void HandleChasePlayer()
     {
+        if(_player == null) return;
+        
         Vector3 _lookDirection = (_player.transform.position - transform.position).normalized;
         _enemyRb.AddForce(_lookDirection * _moveSpeed);
+    }
+
+    private void HandleOutOfBounder()
+    {
+        if (transform.position.y < -8)
+        {
+            Destroy(gameObject);
+        }
     }
 }
