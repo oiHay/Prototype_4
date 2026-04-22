@@ -322,11 +322,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95bd4062649b5db419db51c6f67995d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnManager
-  _enemyPrefab: {fileID: 6932336055357174831, guid: 27aa9f75b06335346a5265520f12697f, type: 3}
+  _waveData: {fileID: 11400000, guid: a082d8ba4b23e494a95e939aa36a1c7f, type: 2}
+  _enemyTypes:
+  - {fileID: 11400000, guid: ae819a8297d399b4391a14fbbcc98795, type: 2}
+  - {fileID: 11400000, guid: 8c66adc08c95034499d23294075de4c2, type: 2}
   _powerUpPrefab: {fileID: 6265966608920881438, guid: 36db3b32c087b5f45b25ffb81aaf22bf, type: 3}
   _spawnRange: 9
   _enemyCount: 0
-  _waveNumber: 1
 --- !u!1 &1211016355
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +791,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f827f45d1e3b2204cb6542a2f24b6eae, type: 2}
+  - {fileID: 2100000, guid: e6e6f7a3c9f4839409af1eae15839382, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

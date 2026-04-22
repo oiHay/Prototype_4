@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private WaveData _waveData;
+    [SerializeField] private EnemyData _data;
+    
+    private float _moveSpeed;
     
     private Rigidbody _enemyRb;
     private Transform _player;
@@ -11,20 +14,24 @@ public class EnemyBehaviour : MonoBehaviour
     {
         _enemyRb = GetComponent<Rigidbody>();
         _player = GameObject.FindWithTag("Player").transform;
+
+        _moveSpeed = _data.Speed + (_waveData.speedPerWave * _waveData.CurrentWave);
     }
 
     private void Update()
     {
         HandleChasePlayer();
         HandleOutOfBounder();
+        
+        Debug.Log("Enemy speed: " + _moveSpeed);
     }
 
     private void HandleChasePlayer()
     {
         if(_player == null) return;
         
-        Vector3 _lookDirection = (_player.transform.position - transform.position).normalized;
-        _enemyRb.AddForce(_lookDirection * _moveSpeed);
+        Vector3 lookDirection = (_player.transform.position - transform.position).normalized;
+        _enemyRb.AddForce(lookDirection * _moveSpeed);
     }
 
     private void HandleOutOfBounder()
@@ -33,5 +40,10 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Init(EnemyData data)
+    {
+        _data = data;
     }
 }

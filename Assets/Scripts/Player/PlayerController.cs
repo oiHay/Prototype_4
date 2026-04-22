@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -6,6 +7,8 @@ public class PlayerController : MonoBehaviour
     
     private Rigidbody _rb;
     private GameObject _focalPoint;
+
+    public static event Action PlayerOutOfBounder;
     
     private void Awake()
     {
@@ -28,7 +31,10 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.y < -8)
         {
-            Destroy(gameObject);
+            transform.position = new Vector3(0, 0.5f, 0);
+            _rb.linearVelocity = Vector3.zero;
+            _rb.angularVelocity = Vector3.zero;
+            PlayerOutOfBounder?.Invoke();
         }
     }
 }

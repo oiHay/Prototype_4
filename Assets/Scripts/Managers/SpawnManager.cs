@@ -6,29 +6,49 @@ using Random = UnityEngine.Random;
 public class SpawnManager : MonoBehaviour
 {
     [Header("Referências")]
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private WaveData _waveData;
+
+    [SerializeField] private EnemyData[] _enemyTypes;
     [SerializeField] private GameObject _powerUpPrefab;
     
     [Header("Valores de Spawn")]
     [SerializeField] private float _spawnRange = 9f;
-
-    [Header("Valores de Wave e Inimigo")]
     [SerializeField] private int _enemyCount;
-    [SerializeField] private int _waveNumber = 1;
+
+    private void OnEnable()
+    {
+        PlayerController.PlayerOutOfBounder += HandleReset;
+    }
+
+    private void OnDisable()
+    {
+        PlayerController.PlayerOutOfBounder -= HandleReset;
+    }
+
+    private void HandleReset()
+    {
+        _waveData.Reset();
+        SpawnEnemyWave(_waveData.CurrentWave);
+        SpawnPowerUp();
+    }
 
     private void Start()
     {
-        SpawnEnemyWave(_waveNumber);
-        SpawnPowerUp();
+        HandleReset();
     }
 
     private void Update()
     {
+        HandleEnemyCount();
+    }
+
+    private void HandleEnemyCount()
+    {
         _enemyCount = FindObjectsByType<EnemyBehaviour>().Length;
         if (_enemyCount == 0)
         {
-            _waveNumber++;
-            SpawnEnemyWave(_waveNumber);
+            _waveData.NextWave();
+            SpawnEnemyWave(_waveData.CurrentWave);
             SpawnPowerUp();
         }
     }
@@ -37,7 +57,12 @@ public class SpawnManager : MonoBehaviour
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            Instantiate(_enemyPrefab, GenerateSpawnPoint(), _enemyPrefab.transform.rotation);
+            EnemyData data = _waveData.CurrentWave >= 2
+                ? _enemyTypes[Random.Range(0, _enemyTypes.Length)]
+                : _enemyTypes[0];
+            
+            GameObject enemy = Instantiate(data.Prefab, GenerateSpawnPoint(), Quaternion.identity);
+            enemy.GetComponent<EnemyBehaviour>().Init(data);
         }
     }
     
