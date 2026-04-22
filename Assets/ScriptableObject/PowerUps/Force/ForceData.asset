@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf0a822e28c7b94fb1a6312ec797ebb, type: 3}
+  m_Name: ForceData
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
+  Effect: {fileID: 11400000, guid: 5360a1c137504e540bf071b99bb5867e, type: 2}
+  Prefab: {fileID: 6265966608920881438, guid: 36db3b32c087b5f45b25ffb81aaf22bf, type: 3}
