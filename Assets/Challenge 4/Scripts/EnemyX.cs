@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyX : MonoBehaviour
 {
     [SerializeField] private WaveData _waveData;
+    [SerializeField] private EnemyData _data;
     
     private float _speed;
     private Rigidbody enemyRb;
@@ -17,7 +18,7 @@ public class EnemyX : MonoBehaviour
         enemyRb = GetComponent<Rigidbody>();
         playerGoal = GameObject.FindWithTag("PlayerGoal").transform;
 
-        _speed = _waveData.GetCurrentSpeed();
+        _speed = _data.Speed + ((_data.SpeedPerWave * _waveData.CurrentWave)/2);
     }
 
     // Update is called once per frame

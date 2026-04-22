@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BasicEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   EnemyName: 0
-  Speed: 20
+  Speed: 10
+  SpeedPerWave: 10
   Force: 10
   Prefab: {fileID: 6932336055357174831, guid: 27aa9f75b06335346a5265520f12697f, type: 3}

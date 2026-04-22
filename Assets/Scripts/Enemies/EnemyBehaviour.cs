@@ -15,13 +15,12 @@ public class EnemyBehaviour : MonoBehaviour
         _enemyRb = GetComponent<Rigidbody>();
         _player = GameObject.FindWithTag("Player").transform;
 
-        _moveSpeed = _data.Speed + (_waveData.speedPerWave * _waveData.CurrentWave);
+        _moveSpeed = _data.Speed + ((_data.SpeedPerWave * _waveData.CurrentWave)/2);
     }
 
     private void Update()
     {
         HandleChasePlayer();
-        HandleOutOfBounder();
         
         Debug.Log("Enemy speed: " + _moveSpeed);
     }
@@ -34,8 +33,10 @@ public class EnemyBehaviour : MonoBehaviour
         _enemyRb.AddForce(lookDirection * _moveSpeed);
     }
 
-    private void HandleOutOfBounder()
+    public void HandleOutOfBounder()
     {
+        _moveSpeed = 0;
+        
         if (transform.position.y < -8)
         {
             Destroy(gameObject);
