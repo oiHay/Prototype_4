@@ -170,8 +170,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 131.16132, y: 2.8768368, z: 131.31522}
-  m_Center: {x: 0.05343628, y: -2.3610513, z: -0.020510865}
+  m_Size: {x: 131.16132, y: 14.347345, z: 131.31522}
+  m_Center: {x: 0.05343628, y: -8.096308, z: -0.020513916}
 --- !u!1001 &245963551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -801,7 +801,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762507b8a1ea8764ab3215bcef9e41a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyTypes: []
+  enemyTypes:
+  - {fileID: 11400000, guid: ae819a8297d399b4391a14fbbcc98795, type: 2}
+  - {fileID: 11400000, guid: 8c66adc08c95034499d23294075de4c2, type: 2}
   waveData: {fileID: 11400000, guid: a082d8ba4b23e494a95e939aa36a1c7f, type: 2}
   spawnRange: 9
 --- !u!1 &1538212857

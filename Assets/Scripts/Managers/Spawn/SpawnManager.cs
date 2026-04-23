@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Object = System.Object;
 using Random = UnityEngine.Random;
 
 
@@ -28,6 +29,7 @@ public class SpawnManager : MonoBehaviour
     private void HandleReset()
     {
         waveData.Reset();
+        powerUpSpawner.ClearPowerUps();
         enemySpawner.SpawnWave(waveData.CurrentWave);
         powerUpSpawner.SpawnPowerUp();
     }

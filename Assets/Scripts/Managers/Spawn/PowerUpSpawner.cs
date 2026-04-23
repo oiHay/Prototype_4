@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PowerUpSpawner : MonoBehaviour
 {
@@ -14,5 +16,13 @@ public class PowerUpSpawner : MonoBehaviour
     private Vector3 GenerateSpawnPoint() // Custom método para um vector3
     {
         return new Vector3(Random.Range(-spawnRange, spawnRange),0,Random.Range(-spawnRange,spawnRange));
+    }
+
+    public void ClearPowerUps()
+    {
+        foreach (var powerUp in FindObjectsByType<PowerUp>() )
+        {
+            Destroy(powerUp.gameObject);
+        }
     }
 }
