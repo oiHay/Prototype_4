@@ -9,11 +9,13 @@ public class PlayerController : MonoBehaviour
     private GameObject _focalPoint;
 
     public static event Action PlayerOutOfBounder;
+    public static GameObject FocalPoint { get; private set; }
     
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _focalPoint = GameObject.Find("Focal Point");
+        FocalPoint = _focalPoint;
     }
 
     private void Update()
@@ -22,7 +24,7 @@ public class PlayerController : MonoBehaviour
         float _sidewaysInput = Input.GetAxis("Horizontal");
         
         _rb.AddForce(_focalPoint.transform.forward * (_moveSpeed * _forwordlInput));
-        _rb.AddForce(Vector3.right * (_moveSpeed * _sidewaysInput));
+        _rb.AddForce(_focalPoint.transform.right * (_moveSpeed * _sidewaysInput));
 
         HandleOutOfBounder();
     }

@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 1538729213749102973}
   - component: {fileID: 4827816374641788701}
   - component: {fileID: 8626490313956931142}
+  - component: {fileID: 251205497077022852}
   - component: {fileID: -1113010116483470689}
+  - component: {fileID: 4856293930746820085}
   m_Layer: 0
-  m_Name: Power Up
+  m_Name: Force Power Up
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,6 +115,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.67489624, y: 0.95568633, z: 0.20007594}
   m_Center: {x: 0, y: -0.00000011920929, z: 0.000000007450581}
+--- !u!54 &251205497077022852
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6265966608920881438}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &-1113010116483470689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,3 +155,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp
   _data: {fileID: 11400000, guid: 71213040d942b7d4586bde6395243e6d, type: 2}
+--- !u!114 &4856293930746820085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6265966608920881438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccf96c605cf30543a50247216f8d34c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FacingCamera
+  rotationSpeed: 150

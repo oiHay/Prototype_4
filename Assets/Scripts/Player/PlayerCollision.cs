@@ -8,50 +8,46 @@ public class PlayerCollision : MonoBehaviour
     private bool _hasPowerUp;
     private PowerUpEffect _activeEffect;
     private Coroutine _powerUpCoroutine;
-    private GameObject _currentIndicator;
 
-    #region PowerUpEffects
+    private ProjectileShooter shooter;
+    private PowerUpIndicator indicator;
 
+    private void Awake()
+    {
+        shooter = GetComponent<ProjectileShooter>();
+        indicator = GetComponent<PowerUpIndicator>();
+    }
+
+    #region PowerUp Effect
     public void EnableForce(float strength, GameObject indicatorPrefab)
     {
         _hasPowerUp = true;
         _forceStrength = strength;
-
-        if (indicatorPrefab == null)
-        {
-            Debug.Log( "Indicator prefab não atribuido no ForceEffect");
-            return;
-        }
-        
-        _currentIndicator = Instantiate(indicatorPrefab, transform.position + new Vector3(0, -0.5f, 0),
-            Quaternion.identity);
-        _currentIndicator.SetActive(true);
-        _currentIndicator.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+        indicator.Show(indicatorPrefab, new Vector3(0,- 0.5f, 0), new Vector3(2.5f, 2.5f, 2.5f));
     }
 
     public void DisableForce()
     {
         _hasPowerUp = false;
         _forceStrength = 10f;
-
-        if (_currentIndicator != null)
-        {
-            Destroy(_currentIndicator);
-        }
+        indicator.Hide();
     }
 
-    #endregion
-
-    private void Update()
+    public void EnableGun(float speed, float fireInterval, GameObject projectilePrefab, GameObject indicatorPrefab)
     {
-        if (_currentIndicator != null)
-        {
-            _currentIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
-        }
-        
-        Debug.Log(_forceStrength);
+        _hasPowerUp = true;
+        shooter.StartShooting(speed, fireInterval, projectilePrefab);
+        indicator.Show(indicatorPrefab, new Vector3(0,- 0.5f, 0), new Vector3(2.5f, 2.5f, 2.5f));
     }
 
+    public void DisableGun()
+    {
+        _hasPowerUp = false;
+        shooter.StopShooting();
+        indicator.Hide();
+    }
+    #endregion
+    
     private void OnTriggerEnter(Collider other)
     {
         if(!other.CompareTag("PowerUp")) return;

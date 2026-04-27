@@ -23,4 +23,12 @@ public class EnemySpawner : MonoBehaviour
     {
         return new Vector3(Random.Range(-spawnRange, spawnRange),0,Random.Range(-spawnRange,spawnRange));
     }
+    
+    public void ClearEnemies()
+    {
+        foreach (var enemies in FindObjectsByType<EnemyBehaviour>() )
+        {
+            Destroy(enemies.gameObject);
+        }
+    }
 }

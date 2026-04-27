@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PolygonPrototype_Texture_01
+  m_Name: Force Material
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 2100000, guid: acc734fdb82fa704282b6b73582d2f67, type: 2}
+  m_Parent: {fileID: 2100000, guid: 95eb6d05abfd6564ea90bdd2011038cf, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _EMISSION
@@ -29,11 +29,18 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _Metallic: 0.799
+    - _Smoothness: 1
+    - _SmoothnessTextureChannel: 1
+    m_Colors:
+    - _BaseColor: {r: 0, g: 1, b: 0.18460202, a: 1}
+    - _Color: {r: 0, g: 1, b: 0.18460199, a: 1}
+    - _EmissionColor: {r: 0, g: 0.05490196, b: 1, a: 1}
+    - _SpecColor: {r: 0.7921569, g: 0.15294115, b: 0.63001436, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &6902756628259421988
+--- !u!114 &2732361940793950227
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,5 +51,5 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
   version: 10

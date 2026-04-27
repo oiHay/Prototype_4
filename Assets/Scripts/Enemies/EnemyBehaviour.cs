@@ -21,6 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void Update()
     {
         HandleChasePlayer();
+        HandleEnemyDeath();
         
         Debug.Log("Enemy speed: " + _moveSpeed);
     }
@@ -36,7 +37,10 @@ public class EnemyBehaviour : MonoBehaviour
     public void HandleOutOfBounder()
     {
         _moveSpeed = 0;
-        
+    }
+
+    public void HandleEnemyDeath()
+    {
         if (transform.position.y < -8)
         {
             Destroy(gameObject);

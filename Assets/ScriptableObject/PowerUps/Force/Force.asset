@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Force
   m_EditorClassIdentifier: Assembly-CSharp::ForceEffect
   Name: Force Mode
-  Duration: 3
-  Indicator: {fileID: 1742899641471652, guid: 923deea38dc6a8843b15db7638919c1e, type: 3}
+  Duration: 5
+  Indicator: {fileID: 760761582358936154, guid: b874f92dc0b06cf4bbf612e594cec04d, type: 3}
   Strength: 100
