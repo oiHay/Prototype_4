@@ -20,7 +20,7 @@ public class ProjectileCollision : MonoBehaviour
     
     private void OnTriggerExit(Collider other)
     {
-        if(!other.gameObject.CompareTag("ProjBounder")) return;
+        if(!other.gameObject.CompareTag("Bounder")) return;
         
         Destroy(this.gameObject);
     }

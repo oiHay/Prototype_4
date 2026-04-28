@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f2d0ec96dcdba4b9709ec5d97f0362, type: 3}
   m_Name: Gun
   m_EditorClassIdentifier: Assembly-CSharp::GunEffect
-  Name: 
+  Name: Gun Mode
   Duration: 5
   Indicator: {fileID: 787458794053802339, guid: e87f01e6ed941664288842d14a63cf00, type: 3}
-  Speed: 15
-  FireInterval: 0.5
-  Projectile: {fileID: 3419287735811646646, guid: 446f91dd678809c4baf5c1bfa7aa1eed, type: 3}
+  speed: 50
+  fireInterval: 0.5
+  projectile: {fileID: 3419287735811646646, guid: 446f91dd678809c4baf5c1bfa7aa1eed, type: 3}

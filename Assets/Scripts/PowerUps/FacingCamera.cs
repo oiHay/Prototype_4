@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FacingCamera : MonoBehaviour
 {
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float rotationSpeed = 150f;
     
     private void Update()
     {

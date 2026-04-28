@@ -10,7 +10,7 @@ public class EnemyCollision : MonoBehaviour
         _behaviour = GetComponent<EnemyBehaviour>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Bounder"))
         {

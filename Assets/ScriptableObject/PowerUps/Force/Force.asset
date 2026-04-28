@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Force Mode
   Duration: 5
   Indicator: {fileID: 760761582358936154, guid: b874f92dc0b06cf4bbf612e594cec04d, type: 3}
-  Strength: 100
+  strength: 300
