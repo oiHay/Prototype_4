@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] private WaveData _waveData;
-    [SerializeField] private EnemyData _data;
+    [SerializeField] private WaveData waveData;
+    [SerializeField] private EnemyData data;
     
-    private float _moveSpeed;
+    private float moveSpeed;
     
-    private Rigidbody _enemyRb;
-    private Transform _player;
+    private Rigidbody enemyRb;
+    private Transform player;
 
     private void Awake()
     {
-        _enemyRb = GetComponent<Rigidbody>();
-        _player = GameObject.FindWithTag("Player").transform;
+        enemyRb = GetComponent<Rigidbody>();
+        player = GameObject.FindWithTag("Player").transform;
 
-        _moveSpeed = _data.Speed + ((_data.SpeedPerWave * _waveData.CurrentWave)/2);
+        moveSpeed = data.Speed + ((data.SpeedPerWave * waveData.CurrentWave)/2);
     }
 
     private void Update()
@@ -23,20 +23,20 @@ public class EnemyBehaviour : MonoBehaviour
         HandleChasePlayer();
         HandleEnemyDeath();
         
-        Debug.Log("Enemy speed: " + _moveSpeed);
+        Debug.Log("Enemy speed: " + moveSpeed);
     }
 
     private void HandleChasePlayer()
     {
-        if(_player == null) return;
+        if(player == null) return;
         
-        Vector3 lookDirection = (_player.transform.position - transform.position).normalized;
-        _enemyRb.AddForce(lookDirection * _moveSpeed);
+        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+        enemyRb.AddForce(lookDirection * moveSpeed);
     }
 
     public void HandleOutOfBounder()
     {
-        _moveSpeed = 0;
+        moveSpeed = 0;
     }
 
     private void HandleEnemyDeath()
@@ -47,8 +47,8 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    public void Init(EnemyData data)
+    public void Init(EnemyData enemyData)
     {
-        _data = data;
+        data = enemyData;
     }
 }

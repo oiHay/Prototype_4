@@ -12,14 +12,9 @@ public class EnemySpawner : MonoBehaviour
         {
             EnemyData data = null;
             
-            if (waveData.CurrentWave >= 2)
-            {
-                data = enemyTypes[Random.Range(0, enemyTypes.Length - 1)];
-            }
-            else
-            {
-                data = enemyTypes[0];
-            }
+            data = waveData.CurrentWave >= 2 
+                ? enemyTypes[Random.Range(0, enemyTypes.Length - 1)] // Forma alternativa de fazer if-else 
+                : enemyTypes[0];
 
             if (waveData.CurrentWave == 5)
             {

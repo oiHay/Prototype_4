@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8974488862737612618}
   - component: {fileID: 4438283452901124360}
   - component: {fileID: 3230182186749576618}
+  - component: {fileID: -1188179549258251379}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -154,8 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc65acfe9f4f23640b8a8eb044af25ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehaviour
-  _waveData: {fileID: 11400000, guid: a082d8ba4b23e494a95e939aa36a1c7f, type: 2}
-  _data: {fileID: 11400000, guid: 39785b9ea3163e44387c374a43978e5f, type: 2}
+  waveData: {fileID: 11400000, guid: a082d8ba4b23e494a95e939aa36a1c7f, type: 2}
+  data: {fileID: 11400000, guid: 39785b9ea3163e44387c374a43978e5f, type: 2}
 --- !u!114 &3230182186749576618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +169,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd91c52836c5044e9445f9a10d94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCollision
+--- !u!114 &-1188179549258251379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116290453753008111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae983c1495fb5414fb86fed3e1e59e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossBehavior
+  targetPrefab: {fileID: 0}
+  targetSpeed: 0
+  attackCooldown: 0
+  attackDuration: 0
