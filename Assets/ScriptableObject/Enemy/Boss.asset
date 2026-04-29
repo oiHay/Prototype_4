@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 700295fe57039aa4a86ea05b8721cc2a, type: 3}
-  m_Name: StrongerEnemy
+  m_Name: Boss
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  EnemyName: Stronger
-  Speed: 20
-  SpeedPerWave: 10
-  Force: 30
-  Prefab: {fileID: 6932336055357174831, guid: 256c3412570022347b61865e97cb05f7, type: 3}
+  EnemyName: Boss
+  Speed: 2.5
+  SpeedPerWave: 1
+  Force: 200
+  Prefab: {fileID: 116290453753008111, guid: b5e68bdadbb01d24dba9dde7a44c194b, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700295fe57039aa4a86ea05b8721cc2a, type: 3}
   m_Name: BasicEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  EnemyName: 0
+  EnemyName: Basic
   Speed: 10
   SpeedPerWave: 10
   Force: 10

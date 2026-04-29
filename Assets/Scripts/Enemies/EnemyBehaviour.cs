@@ -39,7 +39,7 @@ public class EnemyBehaviour : MonoBehaviour
         _moveSpeed = 0;
     }
 
-    public void HandleEnemyDeath()
+    private void HandleEnemyDeath()
     {
         if (transform.position.y < -8)
         {
