@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   EnemyName: Boss
-  Speed: 2.5
+  Speed: 150
   SpeedPerWave: 1
   Force: 200
   Prefab: {fileID: 116290453753008111, guid: b5e68bdadbb01d24dba9dde7a44c194b, type: 3}

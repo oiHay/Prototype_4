@@ -11,17 +11,19 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             EnemyData data = null;
-            
-            data = waveData.CurrentWave >= 2 
-                ? enemyTypes[Random.Range(0, enemyTypes.Length - 1)] // Forma alternativa de fazer if-else 
-                : enemyTypes[0];
 
-            if (waveData.CurrentWave == 5)
-            {
-                ClearEnemies();
+            data = enemyTypes[2];
 
-                data = enemyTypes[2];
-            }
+            // data = waveData.CurrentWave >= 2 
+            //     ? enemyTypes[Random.Range(0, enemyTypes.Length - 1)] // Forma alternativa de fazer if-else 
+            //     : enemyTypes[0];
+
+            // if (waveData.CurrentWave == 5)
+            // {
+            //     ClearEnemies();
+            //
+            //     data = enemyTypes[2];
+            // }
             
             GameObject enemy = Instantiate(data.Prefab, GenerateSpawnPoint(), Quaternion.identity);
             enemy.GetComponent<EnemyBehaviour>().Init(data);

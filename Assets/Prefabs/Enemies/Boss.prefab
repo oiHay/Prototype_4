@@ -124,8 +124,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116290453753008111}
   serializedVersion: 5
-  m_Mass: 20
-  m_LinearDamping: 0
+  m_Mass: 60
+  m_LinearDamping: 2
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -181,7 +181,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae983c1495fb5414fb86fed3e1e59e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossBehavior
-  targetPrefab: {fileID: 0}
+  targetPrefab: {fileID: 5016016279415212214, guid: 514ba081e2f39b34f834ce6218c288ef, type: 3}
   targetSpeed: 0
-  attackCooldown: 0
+  attackCooldown: 5
   attackDuration: 0
+  upwardTime: 0.5
+  force: 10
+  explosionForce: 150
+  explosionRadius: 50
