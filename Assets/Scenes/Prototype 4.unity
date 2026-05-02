@@ -568,7 +568,7 @@ MonoBehaviour:
   enemyTypes:
   - {fileID: 11400000, guid: ae819a8297d399b4391a14fbbcc98795, type: 2}
   - {fileID: 11400000, guid: 8c66adc08c95034499d23294075de4c2, type: 2}
-  - {fileID: 11400000, guid: 39785b9ea3163e44387c374a43978e5f, type: 2}
+  bossData: {fileID: 11400000, guid: 39785b9ea3163e44387c374a43978e5f, type: 2}
   waveData: {fileID: 11400000, guid: a082d8ba4b23e494a95e939aa36a1c7f, type: 2}
   spawnRange: 9
 --- !u!1 &1538212857
@@ -854,8 +854,8 @@ Transform:
   m_GameObject: {fileID: 1845772794}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.5, y: 4, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalPosition: {x: 26, y: 15.54, z: 0}
+  m_LocalScale: {x: 1.9954801, y: 1.9954801, z: 1.9954801}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1868854610}

@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class BossBehavior : MonoBehaviour
+public class BossBehavior : EnemyBehaviour
 {
     [Header("Target & Power values")]
     [SerializeField] private GameObject targetPrefab;
     [SerializeField] private float targetSpeed;
     [SerializeField] private float attackCooldown;
-    [SerializeField] private float attackDuration;
-    private bool isPlayerLocated = false;
+    [SerializeField] private float targetChaseTime;
+    [SerializeField] private float targetLockTime;
 
     [Header("Effect values")] 
     [SerializeField] private float upwardTime;
@@ -17,79 +17,95 @@ public class BossBehavior : MonoBehaviour
     [SerializeField] private float explosionForce;
     [SerializeField] private float explosionRadius;
 
-    private Rigidbody bossRb;
-    private float posY;
-    private bool isReady;
-    
-    private Transform playerTransform;
-
-    private void Awake()
-    {
-        bossRb = GetComponent<Rigidbody>(); 
-        playerTransform = GameObject.FindWithTag("Player").transform;
-    }
+    private bool isBossAttacking = false;
+    private Vector3 smashTargetPosition;
 
     private void Start()
     {
-        StartCoroutine(SmashCooldown());
+        StartCoroutine(AttackCycle());
     }
 
-    private void Update()
+    protected override void Update()
     {
-        OnPowerActivation();
+        if(!isBossAttacking)
+            base.Update();
     }
 
-    private void OnPowerActivation()
+    private IEnumerator AttackCycle()
     {
-        if(!isReady) return;
-        isReady = false;
-        StartCoroutine(SmashRoutine());
+        while (true)
+        {
+            yield return StartCoroutine(ChasePlayer());
+            yield return StartCoroutine(TargetChase());
+            yield return StartCoroutine(SmashRoutine());
+        }
     }
 
-    private IEnumerator SmashCooldown()
+    private IEnumerator ChasePlayer()
     {
+        isBossAttacking = false;
         yield return new WaitForSeconds(attackCooldown);
-        isReady = true;
+
+        isBossAttacking = true;
+        EnemyRb.linearVelocity = new Vector3(0, EnemyRb.linearVelocity.y, 0);
+    }
+
+    private IEnumerator TargetChase()
+    {
+        GameObject instance = Instantiate(targetPrefab);
+        instance.transform.position = new Vector3(Player.position.x, 0f, Player.transform.position.z);
+
+        float chaseTimer = 0f;
+        while (chaseTimer < targetChaseTime)
+        {
+            Vector3 targetPos = new Vector3(Player.position.x, 0f, Player.transform.position.z);
+
+            instance.transform.position =
+                Vector3.Lerp(instance.transform.position, targetPos, targetSpeed * Time.deltaTime);
+
+            chaseTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(targetLockTime);
+
+        smashTargetPosition = instance.transform.position;
+        Destroy(instance);
     }
 
     private IEnumerator SmashRoutine()
     {
-        posY = transform.position.y;
+        float posY = transform.position.y;
        
         float jumpTime = Time.time + upwardTime;
-
         while (Time.time < jumpTime)
         {
-            bossRb.linearVelocity = new Vector2(bossRb.linearVelocity.x, force);
+            EnemyRb.linearVelocity = new Vector3(EnemyRb.linearVelocity.x, force, EnemyRb.linearVelocity.z);
             yield return null;
         }
 
         while (transform.position.y > posY)
         {
-            bossRb.linearVelocity = new Vector2(bossRb.linearVelocity.x, -force * 2);
+            Vector3 horizontalTarget = new Vector3(smashTargetPosition.x, transform.position.y, smashTargetPosition.z);
+            Vector3 direction = (horizontalTarget - transform.position).normalized;
+            
+            
+            EnemyRb.linearVelocity = new Vector3(
+                direction.x * force, 
+                -force * 2, 
+                direction.z * force
+                );
             yield return null;
         }
 
         PlayerController[] playerController = FindObjectsByType<PlayerController>();
         foreach (PlayerController player in playerController)
         {
-            if (!player) continue;
-
             Rigidbody playerRb = player.GetComponent<Rigidbody>();
             if (playerRb)
-            {
                 playerRb.AddExplosionForce(explosionForce, transform.position, explosionRadius, 0f, ForceMode.Impulse);
-            }
         }
 
-        StartCoroutine(SmashCooldown());
+        isBossAttacking = false;
     }
-    
-    // 1. cooldown começa a recontar, boss anda atrás do player  - IEnumerator e Coroutine
-    // 2. cooldown recarrega
-    // 3. parar de andar e procurar o player com o target; boss speed = 0; show targetPrefab - target precisa de rigidbody? 
-    // 4. marcar um lugar depois de x tempo; targetPrefab speed = 0; player located = true - outra coroutine?
-    // 5. ataque começa, vulgo smashEffect do boss - ver como funciona smashBehavior do player
-    // 6. cooldown começa a recontar, boss anda atrás do player - Coroutine de cooldown começa novamente
-    
 }

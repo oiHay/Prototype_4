@@ -3,30 +3,36 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private EnemyData[] enemyTypes;
+    [SerializeField] private EnemyData bossData;
     [SerializeField] private WaveData waveData;
     [SerializeField] private float spawnRange = 9f;
 
+    private int bossCount = 0;
+
     public void SpawnWave(int enemiesToSpawn)
     {
+        if (waveData.CurrentWave % 5 == 0) 
+        {
+            ClearEnemies();
+            bossCount++;
+            
+            for (int i = 0; i < bossCount; i++)
+            {
+                GameObject boss = Instantiate(bossData.Prefab, GenerateSpawnPoint(), Quaternion.identity);
+                boss.GetComponent<EnemyBehaviour>().Init(bossData, waveData);
+            }
+            return;
+        }
+        
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            EnemyData data = null;
-
-            data = enemyTypes[2];
-
-            // data = waveData.CurrentWave >= 2 
-            //     ? enemyTypes[Random.Range(0, enemyTypes.Length - 1)] // Forma alternativa de fazer if-else 
-            //     : enemyTypes[0];
-
-            // if (waveData.CurrentWave == 5)
-            // {
-            //     ClearEnemies();
-            //
-            //     data = enemyTypes[2];
-            // }
+            
+            EnemyData data = waveData.CurrentWave >= 2 
+                ? enemyTypes[Random.Range(0, enemyTypes.Length)] // Forma alternativa de fazer if-else 
+                : enemyTypes[0];
             
             GameObject enemy = Instantiate(data.Prefab, GenerateSpawnPoint(), Quaternion.identity);
-            enemy.GetComponent<EnemyBehaviour>().Init(data);
+            enemy.GetComponent<EnemyBehaviour>().Init(data, waveData);
         }
     }
     
